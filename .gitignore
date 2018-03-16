@@ -1,0 +1,12 @@
+project/project
+project/target
+target
+.history
+dist
+.idea
+*.iml
+*~
+.idea_modules
+.classpath
+.attach*
+
