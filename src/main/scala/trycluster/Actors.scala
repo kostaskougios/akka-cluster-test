@@ -3,7 +3,7 @@ package trycluster
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.Behaviors
 import akka.cluster.ClusterEvent.{MemberEvent, MemberLeft, MemberUp}
-import akka.cluster.typed.{Cluster, Join, Subscribe}
+import akka.cluster.typed.{Cluster, Subscribe}
 import com.typesafe.config.Config
 import com.typesafe.scalalogging.Logger
 
@@ -19,7 +19,6 @@ class Actors(config: Config)
 		val cluster = Cluster(ctx.system)
 
 		val address = cluster.selfMember.address
-		cluster.manager ! Join(address)
 		cluster.subscriptions ! Subscribe(ctx.self, classOf[MemberEvent])
 
 		Behaviors.immutable[Any] {
